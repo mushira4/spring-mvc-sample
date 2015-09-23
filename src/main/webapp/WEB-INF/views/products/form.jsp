@@ -7,14 +7,14 @@
 <title>Cadastro de Produtos</title>
 </head>
 <body>
-<form method="post" action="spring-mvc-basics/products">
+<form method="post" action="save">
 	<div>
 		<label for="title">Title</label>
 		<input type="text" name="title" id="title"/>
 	</div>
 	<div>
 		<label for="description">Description</label>
-		<textarea rows="10" cols="20" id="description"></textarea>
+		<textarea rows="10" cols="20" name="description" id="description"></textarea>
 	</div>
 	<div>
 		<label for="pages">Total of pages</label>

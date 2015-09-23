@@ -5,6 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /**
  * Main configurations of SpringMVC. <br/>
  * It acts as an servlet receiving all the requests made for the application
+ * 
  * @author mushira4
  */
 public class SpringMVCServlet extends
@@ -20,7 +21,7 @@ public class SpringMVCServlet extends
 	 */
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[]{ AppWebConfig.class };
+		return new Class[] { AppWebConfig.class, JPAConfiguration.class };
 	}
 
 	/**
@@ -29,7 +30,7 @@ public class SpringMVCServlet extends
 	 */
 	@Override
 	protected String[] getServletMappings() {
-		return new String[]{"/"};
+		return new String[] { "/" };
 	}
 
 }

@@ -6,9 +6,15 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.spring.mvc.basics.controller.HomeController;
+import br.com.spring.mvc.basics.daos.ProductDAO;
 
+/**
+ * All Spring configuration is inside that class
+ * @author mushira4
+ *
+ */
 @EnableWebMvc //Enable functionalities
-@ComponentScan(basePackageClasses=HomeController.class) //Inform which package have to be loaded
+@ComponentScan(basePackageClasses={HomeController.class, ProductDAO.class}) //Inform which package have to be loaded
 public class AppWebConfig {
 
 	@Bean
