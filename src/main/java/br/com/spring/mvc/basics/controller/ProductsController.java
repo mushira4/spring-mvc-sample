@@ -27,6 +27,7 @@ public class ProductsController {
 		return "products/form";
 	}
 
+	//Using the "always redirect after post" pattern
 	@RequestMapping(method=RequestMethod.POST)
 	public String save(Product product, RedirectAttributes redirectAttributes){
 		System.out.println("Registering the product");
