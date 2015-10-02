@@ -1,6 +1,7 @@
 package br.com.spring.mvc.basics.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -9,6 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Product {
@@ -16,13 +22,22 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
+	@NotNull	
+	// @NotBlank
 	private String title;
 	
 	@Lob
+	@NotNull
+	// @NotBlank
 	private String description;
 	
+	@Min(value = 30)
 	private int pages;
+	
+	// To convert calendar object to String/Database date
+	@DateTimeFormat(iso=ISO.DATE) 
+	private Calendar releaseDate;
 	
 	@ElementCollection
 	private List<Price> prices = new ArrayList<>();
@@ -53,5 +68,11 @@ public class Product {
 	}
 	public void setPrices(List<Price> prices) {
 		this.prices = prices;
+	}
+	public Calendar getReleaseDate() {
+		return releaseDate;
+	}
+	public void setReleaseDate(Calendar releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 }

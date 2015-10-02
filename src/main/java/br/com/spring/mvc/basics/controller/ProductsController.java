@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.spring.mvc.basics.daos.ProductDAO;
 import br.com.spring.mvc.basics.model.BookType;
 import br.com.spring.mvc.basics.model.Product;
-import br.com.spring.mvc.basics.validator.ProductValidator;
 
 @Controller
 @Transactional
@@ -26,10 +23,12 @@ public class ProductsController {
 	@Autowired
 	private ProductDAO productDao;
 
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		binder.setValidator(new ProductValidator());
-	}
+	// This bit of code was used to bind validators to the beans.
+	// It is commente due to the use of bean validation's JSR.
+	// @InitBinder
+	// protected void initBinder(WebDataBinder binder) {
+	// binder.setValidator(new ProductValidator());
+	// }
 
 	@RequestMapping("/form")
 	public String form(Product product, Model model) {
@@ -40,7 +39,8 @@ public class ProductsController {
 	@RequestMapping(method = RequestMethod.POST,
 	/** use this parameter to customize the parameter of mvcUrl taglib function */
 	name = "saveProduct")
-	public String save(@Valid Product product, Model model, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String save(@Valid Product product, Model model, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 		System.out.println("Registering the product");
 		if (bindingResult.hasErrors()) {
 			return form(product, model);
