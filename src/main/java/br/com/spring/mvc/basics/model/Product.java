@@ -13,9 +13,6 @@ import javax.persistence.Lob;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
 @Entity
 public class Product {
 	
@@ -36,7 +33,7 @@ public class Product {
 	private int pages;
 	
 	// To convert calendar object to String/Database date
-	@DateTimeFormat(iso=ISO.DATE) 
+	// @DateTimeFormat(iso=ISO.DATE) // This annotation is not needed anymore due to the mvcConversionService declaration 
 	private Calendar releaseDate;
 	
 	@ElementCollection
