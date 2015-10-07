@@ -15,6 +15,8 @@ public class FileSaver {
 	@Autowired
 	private HttpServletRequest request;
 	
+	
+	// FIXME: It need to check if the directory exists, if not has to create it. 
 	public String write(String baseFolder, MultipartFile file){
 		String realPath = request.getServletContext().getRealPath("/" + baseFolder);
 		System.out.println("Base Folder: " + baseFolder);
