@@ -8,11 +8,14 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.spring.mvc.basics.controller.HomeController;
 import br.com.spring.mvc.basics.daos.ProductDAO;
+import br.com.spring.mvc.basics.infrastructure.FileSaver;
 
 /**
  * All Spring configuration is inside that class
@@ -21,13 +24,13 @@ import br.com.spring.mvc.basics.daos.ProductDAO;
  *
  */
 @EnableWebMvc // Enable functionalities
-@ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class }) // Inform which package have to be loaded
+@ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class, FileSaver.class }) // Inform which package have to be loaded
 public class AppWebConfig  {
 
 	/**
 	 * Configure the resource's page folder.
 	 */
-	@Bean
+	@Bean //Indicates that a method produces a bean to be managed by the Spring container.
 	public InternalResourceViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
@@ -60,6 +63,15 @@ public class AppWebConfig  {
 		registrar.setFormatter(new DateFormatter("yyyy-MM-dd"));
 		registrar.registerFormatters(conversionService);
 		return conversionService;
+	}
+	
+	/**
+	 * Returns the default implementation of the multipartResolver.
+	 * MultipartResolver is responsible for handling the receiving uploaded files. 
+	 */
+	@Bean
+	public MultipartResolver multipartResolver(){
+		return new StandardServletMultipartResolver();
 	}
 
 }

@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.spring.mvc.basics.daos.ProductDAO;
+import br.com.spring.mvc.basics.infrastructure.FileSaver;
 import br.com.spring.mvc.basics.model.BookType;
 import br.com.spring.mvc.basics.model.Product;
 
@@ -20,6 +22,9 @@ import br.com.spring.mvc.basics.model.Product;
 @RequestMapping("/products")
 public class ProductsController {
 
+	@Autowired 
+	private FileSaver fileSaver;
+	
 	@Autowired
 	private ProductDAO productDao;
 
@@ -39,15 +44,20 @@ public class ProductsController {
 	@RequestMapping(method = RequestMethod.POST,
 	/** use this parameter to customize the parameter of mvcUrl taglib function */
 	name = "saveProduct")
-	public String save(@Valid Product product, Model model, BindingResult bindingResult,
+	public String save(MultipartFile summary, @Valid Product product, Model model, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		System.out.println("Registering the product");
 		if (bindingResult.hasErrors()) {
 			return form(product, model);
 		}
 
+		String webPath = fileSaver.write("uploaded-images", summary);
+		product.setSummaryPath(webPath);
+		
 		productDao.save(product);
 		redirectAttributes.addFlashAttribute("success", "Product added succesfully.");
+		
+		
 		// Using the "always redirect after post" pattern
 		return "redirect:products";
 	}

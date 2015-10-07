@@ -12,7 +12,8 @@
 </head>
 <body>
 	<!-- The action is mapped with the name of the method that should be called when the form is submited -->
-	<form:form method="post" action="${spring:mvcUrl(\"saveProduct\").build()}" commandName="product">
+	<!-- CommandName attribute is related to the object validation, it need to have the name of the class of the object that is being validated -->
+	<form:form method="post" action="${spring:mvcUrl(\"saveProduct\").build()}" commandName="product" enctype="multipart/form-data">
 		<div>
 			<label for="title">Title</label> 
 			<input type="text" name="title" id="title" />
@@ -40,6 +41,11 @@
 					name="prices[${status.index}].bookType" value="${bookType}" />
 			</div>
 		</c:forEach>
+		<div>
+			<label for="summary">Sumario do livro</label>
+			<input type="file" name="summary" />
+			<form:errors path="summaryPath" />
+		</div>
 		<div>
 			<input type="submit" value="Send">
 		</div>

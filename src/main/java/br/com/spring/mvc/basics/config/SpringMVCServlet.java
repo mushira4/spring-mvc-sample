@@ -1,5 +1,8 @@
 package br.com.spring.mvc.basics.config;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -8,20 +11,33 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * 
  * @author mushira4
  */
-public class SpringMVCServlet extends
-		AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		// Configure the strategy for receiving files via upload
+		// The empty String defines that the webserver will decide the temp storage path
+		registration.setMultipartConfig(new MultipartConfigElement(""));
+		super.customizeRegistration(registration);
+	}
+	
+	/**
+	 * Specify @Configuration and/or @Component classes to be provided to the root application context.
+	 */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return null;
 	}
 
 	/**
-	 * Configuration that shows which classes should be read and loaded.
+	 * Specify @Configuration and/or @Component classes to be provided to the dispatcher servlet application context.
 	 */
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppWebConfig.class, JPAConfiguration.class };
+		Class<?>[] configClasses = new Class<?>[] { 
+				AppWebConfig.class, 
+				JPAConfiguration.class };
+		return configClasses;
 	}
 
 	/**
