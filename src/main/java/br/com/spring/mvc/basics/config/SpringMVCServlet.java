@@ -36,7 +36,8 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
 	protected Class<?>[] getServletConfigClasses() {
 		Class<?>[] configClasses = new Class<?>[] { 
 				AppWebConfig.class, 
-				JPAConfiguration.class };
+				JPAConfiguration.class,
+				AmazonConfiguration.class};
 		return configClasses;
 	}
 

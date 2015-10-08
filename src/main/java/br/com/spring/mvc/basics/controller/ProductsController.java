@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,8 @@ import br.com.spring.mvc.basics.model.Product;
 @RequestMapping("/products")
 public class ProductsController {
 
-	@Autowired 
+	@Autowired
+	@Qualifier("amazonS3FileSaver")
 	private FileSaver fileSaver;
 	
 	@Autowired
