@@ -40,7 +40,7 @@ public class ProductsController {
 	// }
 
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public ModelAndView show(@PathVariable("id") Integer id){
+	public ModelAndView show(@PathVariable("id") Long id){
 		Product product = productDao.find(id);
 		ModelAndView model = new ModelAndView("products/show"); //The page that will be returned
 		model.addObject("product", product);

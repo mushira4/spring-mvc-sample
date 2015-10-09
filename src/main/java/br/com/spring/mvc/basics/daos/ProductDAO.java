@@ -25,7 +25,7 @@ public class ProductDAO {
 				Product.class).getResultList();
 	}
 
-	public Product find(int id) {
+	public Product find(long id) {
 		return manager.find(Product.class, id);
 	}
 
