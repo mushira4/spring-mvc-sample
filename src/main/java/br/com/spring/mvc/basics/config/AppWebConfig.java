@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import br.com.spring.mvc.basics.controller.HomeController;
 import br.com.spring.mvc.basics.daos.ProductDAO;
 import br.com.spring.mvc.basics.infrastructure.FileSaver;
+import br.com.spring.mvc.basics.model.ShoppingCart;
 
 /**
  * All Spring configuration is inside that class
@@ -24,7 +25,14 @@ import br.com.spring.mvc.basics.infrastructure.FileSaver;
  *
  */
 @EnableWebMvc // Enable functionalities
-@ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class, FileSaver.class }) // Inform which package have to be loaded
+@ComponentScan(
+		basePackageClasses = { // Inform which package have to be loaded 
+			HomeController.class,
+			ProductDAO.class, 
+			FileSaver.class,
+			ShoppingCart.class
+		}
+) 
 public class AppWebConfig  {
 
 	/**
