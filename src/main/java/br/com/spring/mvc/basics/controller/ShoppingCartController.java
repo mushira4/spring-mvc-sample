@@ -27,9 +27,19 @@ public class ShoppingCartController {
 		Product product = productDAO.find(productId);
 		ShoppingItem item = new ShoppingItem(product, booktype);
 		shoppingCart.add(item);
-		return new ModelAndView("redirect:/produtos");
+		
+		ModelAndView modelAndView = new ModelAndView("redirect:/shopping");
+		modelAndView.addObject("shoppingCart", shoppingCart);
+		return modelAndView;
 	}
 	
+	@RequestMapping(value="remove",method=RequestMethod.POST)
+	public String remove(Integer productId){
+		return "";
+	}
 	
-	
+	@RequestMapping(method=RequestMethod.GET)
+	public String items(){
+		return "shoppingCart/items";
+	}
 }

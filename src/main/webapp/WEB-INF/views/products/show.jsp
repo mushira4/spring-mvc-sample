@@ -93,10 +93,6 @@
 								${price.bookType} </label>
 							<p class="variant-price">${price.value}</p></li>
 					</c:forEach>
-
-
-
-
 				</ul>
 
 				<input type="submit" class="submit-image icon-basket-alt"

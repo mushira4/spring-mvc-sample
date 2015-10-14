@@ -90,4 +90,10 @@ public class ProductsController {
 	// return modelAndView;
 	// }
 
+	@RequestMapping(value="checkout",method=RequestMethod.POST)
+	public String checkout(){
+		return "";
+	}
+	
+	
 }
