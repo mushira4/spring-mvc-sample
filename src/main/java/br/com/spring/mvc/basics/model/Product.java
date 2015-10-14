@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class Product {
 	// due to the mvcConversionService declaration
 	private Calendar releaseDate;
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER) //TODO: Study how the model in view pattern can be applied here
 	private List<Price> prices = new ArrayList<>();
 
 	private String summaryPath;
