@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.spring.mvc.basics.daos.ProductDAO;
@@ -23,9 +24,9 @@ public class ShoppingCartController {
 	private ShoppingCart shoppingCart;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView add(Integer productId, BookType booktype){
+	public ModelAndView add(Integer productId, @RequestParam BookType bookType){
 		Product product = productDAO.find(productId);
-		ShoppingItem item = new ShoppingItem(product, booktype);
+		ShoppingItem item = new ShoppingItem(product, bookType);
 		shoppingCart.add(item);
 		
 		ModelAndView modelAndView = new ModelAndView("redirect:/shopping");
@@ -34,12 +35,14 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping(value="remove",method=RequestMethod.POST)
-	public String remove(Integer productId){
+	public String remove(Long productId, BookType bookType){
 		return "";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String items(){
-		return "shoppingCart/items";
+	public ModelAndView items(){
+		ModelAndView modelAndView = new ModelAndView("shoppingCart/items");
+		modelAndView.addObject("shoppingCart", shoppingCart);
+		return modelAndView;
 	}
 }

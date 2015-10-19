@@ -85,12 +85,11 @@
 				<input type="hidden" value="${product.id}" name="productId" />
 				<ul id="variants" class="clearfix">
 					<c:forEach items="${product.prices}" var="price">
-						<li class="buy-option"><input type="radio" name="bookType"
+						<li class="buy-option">
+							<input type="radio" name="bookType"
 							class="variant-radio" id="${product.id}-${price.bookType}"
-							value="${price.bookType}"
-							${price.bookType.name() == 'COMBO' ? 'checked' : ''}> <label
-							class="variant-label" for="${product.id}-${price.bookType}">
-								${price.bookType} </label>
+							value="${price.bookType}" ${price.bookType.name() == 'COMBO' ? 'checked' : ''}> 
+							<label class="variant-label" for="${product.id}-${price.bookType}"> ${price.bookType} </label>
 							<p class="variant-price">${price.value}</p></li>
 					</c:forEach>
 				</ul>
