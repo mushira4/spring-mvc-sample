@@ -89,11 +89,5 @@ public class ProductsController {
 	// modelAndView.addObject("types", BookType.values());
 	// return modelAndView;
 	// }
-
-	@RequestMapping(value="checkout",method=RequestMethod.POST)
-	public String checkout(){
-		return "";
-	}
-	
 	
 }

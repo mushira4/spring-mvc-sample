@@ -26,8 +26,7 @@
 			<div id="header-content">
 				<nav id="main-nav">
 					<ul class="clearfix">
-						<li><!-- a href=""
-							rel="nofollow">Seu carrinho (${shoppingCart.quantity}) </a--></li>
+						<li>Seu carrinho (${shoppingCart.quantity})</li>
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre
 								nós </a></li>
 
