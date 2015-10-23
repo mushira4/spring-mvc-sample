@@ -5,6 +5,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +30,7 @@ public class ProductsController {
 	@Autowired
 	@Qualifier("amazonS3FileSaver")
 	private FileSaver fileSaver;
-	
+
 	@Autowired
 	private ProductDAO productDao;
 
@@ -39,21 +41,25 @@ public class ProductsController {
 	// binder.setValidator(new ProductValidator());
 	// }
 
-	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public ModelAndView show(@PathVariable("id") Long id){
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	public ModelAndView show(@PathVariable("id") Long id) {
 		Product product = productDao.find(id);
-		ModelAndView model = new ModelAndView("products/show"); //The page that will be returned
+		ModelAndView model = new ModelAndView("products/show"); // The page that
+																// will be
+																// returned
 		model.addObject("product", product);
 		return model;
 	}
-	
-	
+
 	@RequestMapping("/form")
 	public String form(Product product, Model model) {
 		model.addAttribute("types", BookType.values());
 		return "products/form";
 	}
 
+	@CacheEvict(value = "books", allEntries = true)
+	// Specify that when this method is called the cache region "books" shall be
+	// invalidated
 	@RequestMapping(method = RequestMethod.POST,
 	/** use this parameter to customize the parameter of mvcUrl taglib function */
 	name = "saveProduct")
@@ -66,21 +72,32 @@ public class ProductsController {
 
 		String webPath = fileSaver.write("uploaded-images", summary);
 		product.setSummaryPath(webPath);
-		
+
 		productDao.save(product);
 		redirectAttributes.addFlashAttribute("success", "Product added succesfully.");
-		
-		
+
 		// Using the "always redirect after post" pattern
 		return "redirect:products";
 	}
 
+	// Enable the cache system to this method
+	// Its compulsory to determine a cache region, in this case 'books'
+	@Cacheable("books")
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model) {
+	public ModelAndView list() {
+		ModelAndView modelAndView = new ModelAndView("products/list");
 		System.out.println("Retrieving products");
-		model.addAttribute("products", productDao.list());
-		return "products/list";
+		modelAndView.addObject("products", productDao.list());
+		return modelAndView;
 	}
+
+	// @Cacheable("books")
+	// @RequestMapping(method = RequestMethod.GET)
+	// public String list(Model model) {
+	// System.out.println("Retrieving products");
+	// model.addAttribute("products", productDao.list());
+	// return "products/list";
+	// }
 
 	// Both ways are valid, it is up to you to decide which is the better option
 	// @RequestMapping("/products/form")
@@ -89,5 +106,5 @@ public class ProductsController {
 	// modelAndView.addObject("types", BookType.values());
 	// return modelAndView;
 	// }
-	
+
 }

@@ -1,5 +1,8 @@
 package br.com.spring.mvc.basics.config;
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,7 +28,8 @@ import br.com.spring.mvc.basics.model.ShoppingCart;
  * @author mushira4
  *
  */
-@EnableWebMvc // Enable functionalities
+@EnableWebMvc  // Enable functionalities
+@EnableCaching // Enable caching system into the application
 @ComponentScan(
 		basePackageClasses = { // Inform which package have to be loaded 
 			HomeController.class,
@@ -99,4 +103,17 @@ public class AppWebConfig  {
 	public RestTemplate restTemplate(){
 		return new RestTemplate();
 	}
+
+	//This solution is a very simple one
+	//If you need something more robustcheck out: Ehcahe or GemFire
+	//The Java JSR for cache is JSR-107.
+	/**
+	 * Configure the cachemanager. <br/>
+	 * In this point you shall instatiate your cache implementation.
+	 */
+	@Bean
+	public CacheManager cacheManager(){
+		return new ConcurrentMapCacheManager();
+	}
+	
 }
