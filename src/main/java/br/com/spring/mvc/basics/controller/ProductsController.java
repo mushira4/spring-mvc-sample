@@ -22,6 +22,11 @@ import br.com.spring.mvc.basics.infrastructure.FileSaver;
 import br.com.spring.mvc.basics.model.BookType;
 import br.com.spring.mvc.basics.model.Product;
 
+/**
+ * Controller for requests related to products.
+ * @author mushira4
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping("/products")
@@ -56,6 +61,14 @@ public class ProductsController {
 		model.addAttribute("types", BookType.values());
 		return "products/form";
 	}
+	
+	// Both ways are valid, it is up to you to decide which is the better option
+	// @RequestMapping("/products/form")
+	// public ModelAndView form(Product product){
+	// ModelAndView modelAndView = new ModelAndView("products/form");
+	// modelAndView.addObject("types", BookType.values());
+	// return modelAndView;
+	// }
 
 	@CacheEvict(value = "books", allEntries = true)
 	// Specify that when this method is called the cache region "books" shall be
@@ -91,6 +104,7 @@ public class ProductsController {
 		return modelAndView;
 	}
 
+	
 	// @Cacheable("books")
 	// @RequestMapping(method = RequestMethod.GET)
 	// public String list(Model model) {
@@ -99,12 +113,12 @@ public class ProductsController {
 	// return "products/list";
 	// }
 
-	// Both ways are valid, it is up to you to decide which is the better option
-	// @RequestMapping("/products/form")
-	// public ModelAndView form(){
-	// ModelAndView modelAndView = new ModelAndView("products/form");
-	// modelAndView.addObject("types", BookType.values());
-	// return modelAndView;
-	// }
 
+	//  You should give priority to Content Negotiation transactions, instead doing that.	
+	//	@RequestMapping(method=RequestMethod.GET, value="json")
+	//	@ResponseBody
+	//	public List<Product> listJson(){
+	//		return productDao.list();
+	//	}
+	
 }
