@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Security Configuration of the web app.
@@ -30,10 +31,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/shopping/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
 				.antMatchers("/products/**").permitAll()
-			.anyRequest()
-				.authenticated()
+			.anyRequest().authenticated()
 			.and()
-				.formLogin();
+			.formLogin().loginPage("/login").permitAll()
+			.and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 	
 	/**

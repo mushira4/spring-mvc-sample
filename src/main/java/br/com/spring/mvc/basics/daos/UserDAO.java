@@ -21,10 +21,12 @@ public class UserDAO implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) {
 		String jpql = "select u from User u where u.login = :login";
 
-		List<User> users = em.createQuery(jpql, User.class).setParameter("login", "username").getResultList();
+		List<User> users = 
+					em.createQuery(jpql, User.class)
+						.setParameter("login", "username")
+					.getResultList();
 
 		if (users.isEmpty()) {
-			System.out.println( "*********************************" );
 			throw new UsernameNotFoundException("O usuario " + username + " não existe.");
 		}
 
