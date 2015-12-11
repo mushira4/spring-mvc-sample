@@ -31,7 +31,13 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
 	 */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[]{SecurityConfiguration.class};
+		// All the classes related to the security filter shall start at the beginning of the app startup
+		return new Class[]{
+				AppWebConfig.class, 
+				JPAConfiguration.class,
+				SecurityConfiguration.class,
+				AmazonConfiguration.class
+		};
 	}
 
 	/**
@@ -39,10 +45,7 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
 	 */
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		Class<?>[] configClasses = new Class<?>[] { 
-				AppWebConfig.class, 
-				JPAConfiguration.class,
-				AmazonConfiguration.class};
+		Class<?>[] configClasses = new Class<?>[] {};
 		return configClasses;
 	}
 
