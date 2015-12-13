@@ -1,26 +1,16 @@
 	<footer id="layout-footer">
 		<div class="clearfix container">
-
-
-
-
-
 			<nav class="breadcrumbs" itemprop="breadcrumb"
 				xmlns:v="http://rdf.data-vocabulary.org/#"> 
 			</nav>
-
-
-
-
-
-
 			<div id="collections-footer">
 				<!-- cdc-footer -->
-				<p class="footer-title">Cole��es de Programa��o</p>
+				<p class="footer-title">Coleções de Programação</p>
 				<ul class="footer-text-links">
 					<li><a href="/collections/livros-de-java">Java</a></li>
-					<li><a href="/collections/livros-desenvolvimento-web">Desenvolvimento
-							Web</a></li>
+					<li>
+					  <a href="/collections/livros-desenvolvimento-web">Desenvolviment Web</a>
+                                        </li>
 					<li><a href="/collections/livros-de-mobile">Mobile</a></li>
 					<li><a href="/collections/games">Games</a></li>
 					<li><a href="/collections/livros-de-front-end">Front End</a></li>
@@ -33,18 +23,17 @@
 			</div>
 			<div id="social-footer">
 				<!-- books-footer -->
-				<p class="footer-title">Links da Casa do C�digo</p>
+				<p class="footer-title">Links da Casa do Código</p>
 				<ul class="footer-text-links">
-					<li><a href="http://livros.casadocodigo.com.br" rel="nofollow">Meus
-							E-books</a></li>
-					<li><a href="/pages/sobre-a-casa-do-codigo">Sobre a Casa
-							do C�digo</a></li>
-					<li><a href="/pages/perguntas-frequentes">Perguntas
-							Frequentes</a></li>
-					<li><a href="https://www.caelum.com.br">Caelum - Ensino e
-							Inova��o</a></li>
-					<li><a href="http://www.codecrushing.com/" rel="nofollow">Code
-							Crushing</a></li>
+					<li>
+                                           <a href="http://livros.casadocodigo.com.br" rel="nofollow">Meus E-books</a>
+                                        </li>
+					<li><a href="/pages/sobre-a-casa-do-codigo">Sobre a Casa do Código</a></li>
+					<li><a href="/pages/perguntas-frequentes">Perguntas Frequentes</a></li>
+					<li><a href="https://www.caelum.com.br">Caelum - Ensino eInovação</a></li>
+					<li>
+                                          <a href="http://www.codecrushing.com/" rel="nofollow">Code Crushing</a>
+                                        </li>
 				</ul>
 				<p class="footer-title">Redes Sociais</p>
 				<ul>
@@ -57,7 +46,7 @@
 			</div>
 			<div id="newsletter-footer">
 				<!-- social-footer -->
-				<p class="footer-title">Receba as Novidades e Lan�amentos</p>
+				<p class="footer-title">Receba as Novidades e Lançamentos</p>
 				<div id="form-newsletter">
 					<form
 						action="https://docs.google.com/spreadsheet/formResponse?formkey=dFhxZ2tDalFiclU4T2FLZVY4UXVUc2c6MQ&embedded=true&ifq"
@@ -74,7 +63,7 @@
 					<ul>
 						<li class="ie8"><a
 							href="https://docs.google.com/spreadsheet/viewform?formkey=dFhxZ2tDalFiclU4T2FLZVY4UXVUc2c6MQ&ifq"
-							rel="nofollow">Receba as Novidades e Lan�amentos</a></li>
+							rel="nofollow">Receba as Novidades e Lançamentos</a></li>
 					</ul>
 				</div>
 				<ul class="footer-payments">

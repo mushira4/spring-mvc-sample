@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -74,8 +73,7 @@
 					<tr>
 						<td class="cart-img-col"><img src=""
 							alt="${item.product.title}" /></td>
-						<td class="item-title">${item.product.title}-
-							${item.bookType}</td>
+						<td class="item-title">${item.product.title}-${item.bookType}</td>
 						<td class="numeric-cell">${item.price}</td>
 						<td class="quantity-input-cell"><input type="number" min="0"
 							readonly="readonly" value="${shoppingCart.getQuantity(item)}"></td>
@@ -145,8 +143,7 @@
 		</ul>
 
 		<h2>
-			<a href="http://www.casadocodigo.com.br">Veja todos os livros que
-				publicamos!</a>
+			<a href="http://www.casadocodigo.com.br">Veja todos os livros que publicamos!</a>
 		</h2>
 	</section>
 </jsp:body>	

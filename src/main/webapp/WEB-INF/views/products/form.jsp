@@ -1,16 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="customTags" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Cadastro de Produtos</title>
-</head>
-<body>
+<customTags:page bodyClass="" title="Products form">
+<jsp:body>
 	<!-- The action is mapped with the name of the method that should be called when the form is submited -->
 	<!-- CommandName attribute is related to the object validation, it need to have the name of the class of the object that is being validated -->
 	<form:form method="post" action="${spring:mvcUrl(\"saveProduct\").build()}" commandName="product" enctype="multipart/form-data">
@@ -50,5 +45,5 @@
 			<input type="submit" value="Send">
 		</div>
 	</form:form>
-</body>
-</html>
+</jsp:body>
+<customTags:page>
