@@ -1,19 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="customTags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
 
 <customTags:page bodyClass="" title="Products form">
-<jsp:body>
+	<jsp:body>
 	<!-- The action is mapped with the name of the method that should be called when the form is submited -->
 	<!-- CommandName attribute is related to the object validation, it need to have the name of the class of the object that is being validated -->
-	<form:form method="post" action="${spring:mvcUrl(\"saveProduct\").build()}" commandName="product" enctype="multipart/form-data">
+	<form:form method="post"
+			action="${spring:mvcUrl(\"saveProduct\").build()}"
+			commandName="product" enctype="multipart/form-data">
 		<div>
 			<label for="title">Title</label> 
 			<input type="text" name="title" id="title" />
 			<!-- This bit of code shows the errors found during the validation. -->
-			<form:errors path="title"/>
+			<form:errors path="title" />
 		</div>
 		<div>
 			<label for="description">Description</label>
@@ -25,15 +28,15 @@
 		</div>
 		<div>
 			<label for="releaseDate">Data de lançamento</label>
-			<input type="text" name="releaseDate"/>
+			<input type="text" name="releaseDate" />
 			<form:errors path="releaseDate" />
 		</div>		
 		<c:forEach items="${types}" var="bookType" varStatus="status">
 			<div>
 				<label for="price_${bookType}">${bookType}</label> <input
-					type="text" name="prices[${status.index}].value"
-					id="price_${bookType}" /> <input type="hidden"
-					name="prices[${status.index}].bookType" value="${bookType}" />
+						type="text" name="prices[${status.index}].value"
+						id="price_${bookType}" /> <input type="hidden"
+						name="prices[${status.index}].bookType" value="${bookType}" />
 			</div>
 		</c:forEach>
 		<div>
@@ -46,4 +49,4 @@
 		</div>
 	</form:form>
 </jsp:body>
-<customTags:page>
+</customTags:page>
