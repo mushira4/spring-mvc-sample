@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 
 public class RoleVoter implements AccessDecisionVoter<Object> {
 
-	private String rolePrefix = "ROLE_";
+	//private String rolePrefix = "ROLE_";
 
 	@Override
 	public boolean supports(ConfigAttribute attribute) {

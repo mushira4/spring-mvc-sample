@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -22,10 +23,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JPAConfiguration {
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
+	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource){
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		
-		em.setDataSource(dataSource());
+		em.setDataSource(dataSource);
 		em.setPackagesToScan(new String[]{ "br.com.spring.mvc.basics.model" });
 		
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -42,6 +43,8 @@ public class JPAConfiguration {
 		return transactionManager;
 	}
 	
+	@Bean
+	@Profile("dev")
 	private DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName( "com.mysql.jdbc.Driver" );
