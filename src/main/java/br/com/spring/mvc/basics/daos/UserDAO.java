@@ -19,11 +19,11 @@ public class UserDAO implements UserDetailsService {
 	private EntityManager em;
 
 	public UserDetails loadUserByUsername(String username) {
-		String jpql = "select u from User u where u.login = :login";
+		String jpql = "select u from User u where u.login like :login";
 
 		List<User> users = 
 					em.createQuery(jpql, User.class)
-						.setParameter("login", "username")
+						.setParameter("login", username)
 					.getResultList();
 
 		if (users.isEmpty()) {

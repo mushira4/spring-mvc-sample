@@ -1,9 +1,5 @@
 package br.com.spring.mvc.basics;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.spring.mvc.basics.config.JsonViewResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -16,14 +12,9 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 /**
@@ -32,42 +23,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @author mushira4
  *
  */
-//@EnableWebMvc  // Enable MVC functionalities
 @EnableCaching // Enable caching system into the application
-//@ComponentScan(
-//		basePackageClasses = { // Inform which package have to be loaded
-//			HomeController.class,
-//			ProductDAO.class,
-//			FileSaver.class,
-//			ShoppingCart.class
-//		}
-//)
 @SpringBootApplication
 public class AppWebConfig  {
 
 	public static void main(String args[]){
 		SpringApplication.run(AppWebConfig.class, args);
 	}
-
-//	/**
-//	 * Configure the resource's page folder.
-//	 */
-//	@Bean //Indicates that a method produces a bean to be managed by the Spring container.
-//	public InternalResourceViewResolver internalResourceViewResolver() {
-//		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//		resolver.setPrefix("/WEB-INF/views/");
-//		resolver.setSuffix(".jsp");
-//
-//		// Set whether to make all Spring beans in the application context accessible as request attributes, through lazy checking once an attribute gets accessed.
-//		// This will make all such beans accessible in plain ${...} expressions in a JSP 2.0 page, as well as in JSTL's c:out value expressions.
-//		// If you uncomment this all beans will be accessible in the pages.
-//		// resolver.setExposeContextBeansAsAttributes(true);
-//
-//		//Allow the shopping cart session bean to be accessible into the page.
-//		resolver.setExposedContextBeanNames("shoppingCart");
-//
-//		return resolver;
-//	}
 
 	/**
 	 * Configure the message's source folder. 
@@ -125,15 +87,4 @@ public class AppWebConfig  {
 		return new ConcurrentMapCacheManager();
 	}
 	
-//	@Bean
-//	public ViewResolver contentNegotiationViewResolver(ContentNegotiationManager manager){
-//		List<ViewResolver> resolvers = new ArrayList<>();
-//		resolvers.add(internalResourceViewResolver());
-//		resolvers.add(new JsonViewResolver());
-//
-//		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
-//		resolver.setViewResolvers(resolvers);
-//		resolver.setContentNegotiationManager(manager);
-//		return resolver;
-//	}
 }
