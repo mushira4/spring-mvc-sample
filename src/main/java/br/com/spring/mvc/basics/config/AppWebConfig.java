@@ -34,7 +34,7 @@ import br.com.spring.mvc.basics.model.ShoppingCart;
  * @author mushira4
  *
  */
-@EnableWebMvc  // Enable functionalities
+@EnableWebMvc  // Enable MVC functionalities
 @EnableCaching // Enable caching system into the application
 @ComponentScan(
 		basePackageClasses = { // Inform which package have to be loaded 
