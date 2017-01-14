@@ -9,7 +9,7 @@ import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import br.com.spring.mvc.basics.config.AmazonConfiguration;
-import br.com.spring.mvc.basics.config.AppWebConfig;
+import br.com.spring.mvc.basics.AppWebConfig;
 import br.com.spring.mvc.basics.config.JPAConfiguration;
 import br.com.spring.mvc.basics.config.SecurityConfiguration;
 

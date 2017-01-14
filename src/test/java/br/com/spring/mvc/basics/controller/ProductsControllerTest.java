@@ -21,7 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 
-import br.com.spring.mvc.basics.config.AppWebConfig;
+import br.com.spring.mvc.basics.AppWebConfig;
 import br.com.spring.mvc.basics.config.DataSourceConfigurationTest;
 import br.com.spring.mvc.basics.config.JPAConfiguration;
 import br.com.spring.mvc.basics.config.SecurityConfiguration;

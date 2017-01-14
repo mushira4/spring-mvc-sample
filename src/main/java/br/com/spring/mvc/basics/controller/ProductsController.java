@@ -33,7 +33,7 @@ import br.com.spring.mvc.basics.model.Product;
 public class ProductsController {
 
 	@Autowired
-	@Qualifier("amazonS3FileSaver")
+	@Qualifier("localFileSaver")
 	private FileSaver fileSaver;
 
 	@Autowired

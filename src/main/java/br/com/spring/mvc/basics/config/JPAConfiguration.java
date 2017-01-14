@@ -23,20 +23,20 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class JPAConfiguration {
 
-	@Bean
-	@Profile("dev")
-	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-
-		em.setDataSource(dataSource);
-		em.setPackagesToScan(new String[] { "br.com.spring.mvc.basics.model" });
-
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(additionalProperties());
-
-		return em;
-	}
+//	@Bean
+//	@Profile("dev")
+//	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
+//		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+//
+//		em.setDataSource(dataSource);
+//		em.setPackagesToScan(new String[] { "br.com.spring.mvc.basics.model" });
+//
+//		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//		em.setJpaVendorAdapter(vendorAdapter);
+//		em.setJpaProperties(additionalProperties());
+//
+//		return em;
+//	}
 
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
@@ -45,23 +45,23 @@ public class JPAConfiguration {
 		return transactionManager;
 	}
 
-	@Bean
-	@Profile("dev")
-	private DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/springBooks");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		return dataSource;
-	}
+//	@Bean
+//	@Profile("dev")
+//	private DataSource dataSource() {
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mysql://localhost:3306/springBooks");
+//		dataSource.setUsername("root");
+//		dataSource.setPassword("");
+//		return dataSource;
+//	}
 
-	private Properties additionalProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-		properties.setProperty("hibernate.show_sql", "true");
-		return properties;
-	}
+//	private Properties additionalProperties() {
+//		Properties properties = new Properties();
+//		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+//		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//		properties.setProperty("hibernate.show_sql", "true");
+//		return properties;
+//	}
 
 }
